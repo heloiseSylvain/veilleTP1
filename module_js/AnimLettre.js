@@ -14,42 +14,38 @@ export class AnimLettre {
      }}
      */
 
-    constructor(o, elementParent, fonction) {
+    constructor(lesLettres, elementParent, fonction) {
         //Récupérer les valeurs passées en paramètre			
-        this.lesLettres = o.lesLettres
+        this.lesLettres = lesLettres
         this.elmParent = elementParent
         this.AnimLettre(this.lesLettres)
         this.fonction = fonction
     }
 
 
-    AnimLettre() {
+    AnimLettre(lesLettres) {
         /* Création des élément DOM qui seront animés. 
         Les éléments seront intégré dans le conteneur elmParent
         */
-        console.log('introduction')
+       let i = 0;
+       const tabCouleur = ['#CC231E', '#235E6F' , '#009900', '#34A65F', '#0F8A5F','#F5624D']
         let elmConteneur = this.creerElement(this.elmParent,
             'section',
             '',
             'mot')
             
         for (let uneLettre of lesLettres){
-			
-                uneLettre.style.animationDelay = (i * 0.5) + "s";
-                uneLettre.style.color = tabCouleur[(i++)%7]
-                
+            let elmLettre = this.creerElement(elmConteneur, 'div', uneLettre, 'mot')
+            elmLettre.style.animationDelay = (i * 0.5) + "s";
+            elmLettre.style.color = tabCouleur[(i++)%7]    
         }
-        
-    
-        //Quand l'animation de la dernière lettre du mot joyeux est terminée la fonction animerNoel est appelée	
-        lesLettres[nbLettres - 1].addEventListener("animationend", animerNoel, false);
-        console.log('lesLettres[nbLettres - 1]' + lesLettres[nbLettres - 1].innerHTML)
 
+        this.lesLettres[nbLettres - 1].addEventListener("animationend", terminerIntro, false);
+        //console.log('lesLettres[nbLettres - 1]' + this.lesLettres[nbLettres - 1].innerHTML)
 
 
         /* On garde une référence sur la fonction terminerIntro */
         let refTerminerIntro = this.terminerIntro.bind(this)
-        elmBouton.addEventListener('mousedown', this.terminerIntro.bind(this))
     }
 
     creerElement(elmParent, balise, contenu, classCSS) {
