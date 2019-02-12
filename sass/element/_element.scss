@@ -1,0 +1,31 @@
+
+
+li{
+    list-style: none;
+    display: inline;
+    margin: 1vw;
+}
+
+li:hover{
+    color: salmon;
+    cursor: pointer;
+}
+ul{
+    background: rgba($color: white, $alpha: 0.5);
+    height: 10vh;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.footer{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.icone{
+    margin: 1vw;
+}
